@@ -5,9 +5,7 @@ const NotFoundError = require('../errors/NotFoundError');
 const ValidationError = require('../errors/ValidationError');
 const ExistError = require('../errors/ExistError');
 
-require('dotenv').config();
-
-const { NODE_ENV, JWT_SECRET } = process.env;
+const { JWT_SECRET, NODE_ENV } = require('../config');
 
 const getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)

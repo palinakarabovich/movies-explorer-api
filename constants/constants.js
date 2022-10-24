@@ -1,3 +1,15 @@
-const regEx = /(https?:\/\/)(w{3}\.)?([a-zA-Z0-9-]{0,63}\.)([a-zA-Z]{2,4})(\/[\w\-._~:/?#[\]@!$&'()*+,;=]#?)?/;
+const ERROR_CODE_VALIDATION = 400;
+const ERROR_CODE_AUTH = 401;
+const ERROR_CODE_NO_RIGHTS = 403;
+const ERROR_CODE_NOT_FOUND = 404;
+const ERROR_CODE_IT_EXIST = 409;
+const ERROR_CODE_SERVER = 500;
 
-module.exports = regEx;
+module.exports = {
+  ERROR_CODE_VALIDATION,
+  ERROR_CODE_NOT_FOUND,
+  ERROR_CODE_SERVER,
+  ERROR_CODE_AUTH,
+  ERROR_CODE_IT_EXIST,
+  ERROR_CODE_NO_RIGHTS,
+};
