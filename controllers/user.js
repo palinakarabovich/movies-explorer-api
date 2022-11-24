@@ -31,14 +31,15 @@ const updateCurrentUser = (req, res, next) => {
   })
     .then((user) => {
       if (user === null) {
-        next(new NotFoundError('Пользователь не найден'));
-      } else {
-        res.send(user);
+        return next(new NotFoundError('Пользователь не найден'));
       }
+      return res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
         return next(new ValidationError('Введите корректные данные'));
+      } if (err.code === 11000) {
+        return next(new ExistError('Нельзя использовать эмейл повторно'));
       } return next(err);
     });
 };
