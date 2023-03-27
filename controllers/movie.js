@@ -43,9 +43,9 @@ const addMovie = (req, res, next) => {
     .then((movie) => res.send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new ValidationError(`Некорректные данные для создания фильма ${err.message}`));
+        return next(new ValidationError(`Incorrect data ${err.message}`));
       } if (err.code === 11000) {
-        return next(new ExistError('Данный фильм уже сохранен в избранном'));
+        return next(new ExistError('Can not save the film twice'));
       }
       return next(err);
     });
@@ -55,17 +55,17 @@ const deleteMovie = (req, res, next) => {
   Movie.findById(req.params.movieId)
     .then((movie) => {
       if (movie === null) {
-        return next(new NotFoundError('Фильм не найден'));
+        return next(new NotFoundError('Not found'));
       }
       if (!movie.owner.equals(req.user._id)) {
-        return next(new NoRightsError('Недостаточно прав для удаления фильма'));
+        return next(new NoRightsError('Access error'));
       }
       return movie.remove()
-        .then(() => res.send({ message: `Фильм  '${movie.nameRU}' удален из избранного` }));
+        .then(() => res.send({ message: `Film  '${movie.nameRU}' was deleted` }));
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        return next(new ValidationError('Переданы некорректный id фильма'));
+        return next(new ValidationError('Incorrect id'));
       }
       return next(err);
     });
