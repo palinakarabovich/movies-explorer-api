@@ -11,13 +11,13 @@ const getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       if (!user) {
-        return next(new NotFoundError('Пользователь не найден'));
+        return next(new NotFoundError('Not found'));
       }
       return res.send(user);
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        return next(new ValidationError('Некорректные id пользователя, поиск невозможен'));
+        return next(new ValidationError('Incorrect id'));
       }
       return next(err);
     });
@@ -31,15 +31,15 @@ const updateCurrentUser = (req, res, next) => {
   })
     .then((user) => {
       if (user === null) {
-        return next(new NotFoundError('Пользователь не найден'));
+        return next(new NotFoundError('Not found'));
       }
       return res.send(user);
     })
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        return next(new ValidationError('Введите корректные данные'));
+        return next(new ValidationError('Incorrect data'));
       } if (err.code === 11000) {
-        return next(new ExistError('Нельзя использовать эмейл повторно'));
+        return next(new ExistError('Can not use the email twice'));
       } return next(err);
     });
 };
@@ -64,10 +64,10 @@ const createUser = (req, res, next) => {
     })
     .catch((err) => {
       if (err.code === 11000) {
-        return next(new ExistError('Нельзя использовать эмейл повторно'));
+        return next(new ExistError('Can not use the email twice'));
       }
       if (err.name === 'ValidationError') {
-        return next(new ValidationError(`Некорректные данные для создания пользователя ${err.message}`));
+        return next(new ValidationError(`Incorrect data ${err.message}`));
       }
       return next(err);
     });
