@@ -1,28 +1,23 @@
-# "Movies-explorer" бекенд
+# "Movies-explorer" backend
 
-## Описание проекта
-Это бэкенд часть приложения для поиска фильмов, с возможностью сохранения\удаления их из избранного.
+## Description
+This is a back-end part of an application for finding movies, with the ability to save/remove them from favorites.
+Project on [HEROKU](https://movies-explorer-api.herokuapp.com).
+Frontend can be found [here](https://github.com/palinakarabovich/movies-explorer-frontend)
 
-## Основной функционал
-* регистрация и авторизация,
-* добавление и удаление фильмов из избранного,
-* получение данных текущего пользователя,
-* редактирование персональных данных пользователя,
-* централизованная обработка ошибок,
-* валидация данных до контроллера через celebrate,
-* защита роутов авторизацией.
+## Functionality
+* registration and authorization,
+* add and remove movies from favorites,
+* getting the data of the current user,
+* editing the user's personal data,
+* centralized error handling,
+* data validation to the controller via celebrate,
+* protection of routes by authorization.
 
-## Инструменты и технологии
+## Tools and technologies
 * Node.js,
 * mongoDB,
 * express.js,
 * mongoose,
 * celebrate,
-* winston (логирование запросов и ошибок),
-* облачный сервер на Яндекс.Облако,
-* SSL сертификат.
-
-----------------
-
-### Запуск
-Адрес для запросов на бэкенд: https://api.movies.karabovich.nomoredomains.icu
+* winston (logging requests and errors),
